@@ -11,6 +11,9 @@
     float: left;
     padding-left: 15px;
 }
+input{
+    margin:5px;
+}
 a:link {color:black;}    /* 未被访问的链接 */
 a:visited {color:grey;} /* 已被访问的链接 */
 a:hover {color:blue;}   /* 鼠标指针移动到链接上 */
