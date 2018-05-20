@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link type="text/css" rel="stylesheet" href="style_1.css"> -->
-    <!-- <link type="text/css" rel="stylesheet" href="style_2.css"> -->
-    <link type="text/css" rel="stylesheet" href="style_3.css">
+    <link type="text/css" rel="stylesheet" href="style_1.css" title="a">
+    <link type="text/css" rel="alternate stylesheet" href="style_2.css" title="b">
+    <link type="text/css" rel="alternate stylesheet" href="style_3.css" title="c">
      <title>个人简历</title>
 </head>
  
 <body>
+    <div id="block">
     <div id = "nav"><h1>简历</h1></div>
     <div id = "css_table">
     <div class = "css_tr">
@@ -35,7 +36,6 @@
         <div class="css_td2"> 
              <h4>技术能力</h4>
              <p>熟练掌握HTML，CSS，JavaScript</p> 
-        <br/>
              <h4>综合能力</h4>
              <p>良好的沟通能力，主动积极，努力勤奋</p>    
         </div>
@@ -45,7 +45,6 @@
         <div class = "css_td2">
             <h4>本科</h4>
             <p>百度前端技术学院小薇学院</p>
-        <br/>
             <h4>研究生</h4>
             <p>百度前端技术学院大斌学院</p>
         </div>
@@ -55,11 +54,53 @@
         <div class = "css_td2">
             <h4>小度小度</h4>
             <p>作为前端工程师角色参与了ABC组件的开发</p>
-        <br/>
             <h4>SAN Doc</h4>
             <p>作为文档工程师参与力SAN Doc编写</p> 
         </div> 
     </div>
     </div>
+    </div>
+    <input type="button" value="互动" onclick="addbtn()">
+    <div class="con">
+        <input type="button" id="sheet-a" value="样式1" />
+        <input type="button" id="sheet-b" value="样式2" />
+        <input type="button" id="sheet-c" value="样式3" />
+    </div>
+    <script>
+        function addbtn(){
+        confirm("想了解我有哪些爱好吗？");{
+            if(true){
+                alert("电影，美食，旅行！")
+            }
+        }
+        }
+        document.getElementById("sheet-a").addEventListener("click",function(){
+             setStyleSheet("a");
+            });
+        document.getElementById("sheet-b").addEventListener("click",function(){
+            setStyleSheet("b");
+            });
+        document.getElementById("sheet-c").addEventListener("click",function(){
+            setStyleSheet("c");
+            });    
+        function setStyleSheet(title){  
+        // 首先找到DOM中所有的link标签
+            var link_list = document.getElementsByTagName("link");
+            if ( link_list ){
+                for ( var i=0;i<link_list.length;i++ ){
+                    // 要找到所有link中rel属性值包括style的，也就是包括stylesheet和alternate stylesheet;
+                    if ( link_list[i].getAttribute("rel").indexOf("style") != -1 ){
+                        // 将符合条件的link的disabled的属性设为true，都改为禁用；
+                        link_list[i].disabled = true;
+                        // 然后判断link标签中的title属性，找到我们需要替换的css文件
+                        // 找到后将该link的disabled改为启用；
+                        if ( link_list[i].getAttribute("title") === title){
+                            link_list[i].disabled = false;
+                        }
+                    }
+                }
+            }
+        };
+    </script>
 </body>
 </html>
