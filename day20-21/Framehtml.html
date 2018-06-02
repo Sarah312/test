@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用js实现帧动画</title>
+    <style>
+        #picture{
+            position: relative;
+            height: 480px;
+            width:480px;
+            overflow: hidden;
+            margin:auto;
+        }
+        #picture img{
+            position:absolute;
+            top:0px;
+        }
+    </style>
+</head>
+<body>
+    <button id = "start">开始</button>
+    <button id = "stop">停止</button>
+    <div id = "picture">
+    <img src = "smile.jpg" id = "smile-pic"> 
+    </div>
+    <script>
+        var sp = document.getElementById("smile-pic");
+        var bstart = document.getElementById("start");
+        var bstop = document.getElementById("stop");
+        var head = 0;
+        var height = 480;
+        var asmile = setInterval(smile,60);
+
+        function smile() {
+            if (head <= -7680) {
+                height = -height;
+            } else if (head >= 0) {
+                height = -height;
+            } 
+            head += height;
+            sp.style.top = `${head}px`;
+        }
+        bstart.addEventListener("click", function () {
+            if (asmile) {
+                clearInterval(asmile);
+                asmile = setInterval(smile, 60);
+            }
+        },false);
+        
+        bstop.addEventListener("click", function () {
+            clearInterval(asmile);
+        },false);
+    </script>
+</body>
+</html>
